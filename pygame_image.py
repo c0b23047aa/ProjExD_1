@@ -13,16 +13,29 @@ def main():
     bg2_img = pg.transform.flip(bg_img, True, False) #反転背景Surfaceを生成する
     koukaton_img = pg.image.load("fig/3.png")#こうかとんSurfaceを生成する
     koukaton_img = pg.transform.flip(koukaton_img, True, False)
+    kk_rct = koukaton_img.get_rect() #こうかとんSurfaceに対応するこうかとんRectを取得する
+    kk_rct.center = 300, 200 
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        x = tmr%4800
+
+        key_lst = pg.key.get_pressed()
+        if key_lst[pg.K_UP]: #全キーの押下状態（True or False）を取得する
+            kk_rct.move_ip((0, -1)) #全キーの押下状態（True or False）を取得する
+        if key_lst[pg.K_DOWN]: 
+            kk_rct.move_ip((0, +1))
+        if key_lst[pg.K_LEFT]: 
+            kk_rct.move_ip((-1, 0))
+        if key_lst[pg.K_RIGHT]: 
+            kk_rct.move_ip((+1, 0))
+            
+        x = tmr%3200
         screen.blit(bg_img, [-x, 0]) #ScreenSurfaceに背景Surfaceを貼り付ける
         screen.blit(bg2_img, [-x+1600, 0]) #ScreenSurfaceに反転背景Surfaceを貼り付ける
         screen.blit(bg_img, [-x+3200, 0]) 
         screen.blit(bg2_img, [-x+4800, 0])
-        screen.blit(koukaton_img, [300, 200]) #ScreenSurfaceにこうかとんSurfaceを貼り付ける
+        screen.blit(koukaton_img, kk_rct)
         pg.display.update()
         tmr += 1        
         clock.tick(200)
