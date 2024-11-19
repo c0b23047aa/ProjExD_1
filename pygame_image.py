@@ -17,7 +17,7 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        screen.blit(bg_img, [0, 0]) #ScreenSurfaceに背景画像Surfaceを貼り付ける
+        screen.blit(bg_img, [-tmr, 0]) #ScreenSurfaceに背景画像Surfaceを貼り付ける
         screen.blit(koukaton_img, [300, 200]) #ScreenSurfaceにこうかとん画像Surfaceを貼り付ける
         pg.display.update()
         tmr += 1        
