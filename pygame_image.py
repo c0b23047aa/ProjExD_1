@@ -17,8 +17,11 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        screen.blit(bg_img, [-(tmr%1600), 0]) #ScreenSurfaceに背景Surfaceを貼り付ける
-        screen.blit(bg2_img, [-(tmr+1600)%1600, 0]) #ScreenSurfaceに反転背景Surfaceを貼り付ける
+        x = tmr%4800
+        screen.blit(bg_img, [-x, 0]) #ScreenSurfaceに背景Surfaceを貼り付ける
+        screen.blit(bg2_img, [-x+1600, 0]) #ScreenSurfaceに反転背景Surfaceを貼り付ける
+        screen.blit(bg_img, [-x+3200, 0]) 
+        screen.blit(bg2_img, [-x+4800, 0])
         screen.blit(koukaton_img, [300, 200]) #ScreenSurfaceにこうかとんSurfaceを貼り付ける
         pg.display.update()
         tmr += 1        
